@@ -188,7 +188,7 @@
                 ctx.drawImage(card, 20, 30, imageWidth, imageHeight);
 
                 tableCell.appendChild(newThumbnail)
-                // tableRow.appendChild(idCell)
+                tableRow.appendChild(idCell)
                 tableRow.appendChild(tableCell)
 
                 document.getElementById('main').appendChild(tableRow)
@@ -259,6 +259,7 @@
         <table id="toSort" class="sortable table">
             <thead>
                 <tr>
+                  <th>id</th>
                   <th>Thumbnail</th>
                 </tr>
               </thead>
