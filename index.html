@@ -158,7 +158,8 @@
             const createTitle = (ctx, count) => {
 				const mainColor = document.querySelector('#MainColor').value;
 				const bgColor = document.querySelector('#BgColor').value;
-				const correction = parseInt(document.querySelector('#BgCorrection').value);
+				const correctionY = parseInt(document.querySelector('#BgCorrectionY').value);
+				const correctionX = parseInt(document.querySelector('#BgCorrectionX').value);
 
                 ctx.font = "bold 60px calibri";
                 ctx.fillStyle = '#000'
@@ -166,11 +167,10 @@
                 ctx.fillText("CO-OP #" + count, textStart, 150);
                 ctx.fillText("IMPOSSIBLE", textStart, 220);
 
-                const move = 5
                 ctx.fillStyle = '#fff'
-                ctx.fillText("KAMPANIA", textStart + move, 80 + correction);
-                ctx.fillText("CO-OP #" + count, textStart + move, 150  + correction);
-                ctx.fillText("IMPOSSIBLE", textStart + move, 220  + correction);
+                ctx.fillText("KAMPANIA", textStart + correctionX, 80 + correction);
+                ctx.fillText("CO-OP #" + count, textStart + correctionX, 150  + correction);
+                ctx.fillText("IMPOSSIBLE", textStart + correctionX, 220  + correction);
             }
 
             const createThumbnail = (card, counter, background) => {
@@ -259,8 +259,12 @@
                 <input class="form-control" id="BgColor" value="#ffffff">
             </div>
             <div class="mb-3 fileSelect">
-                <label for="fileItems" class="form-label">Korekta tła napisu</label>
-                <input class="form-control" id="BgCorrection" value="-4">
+                <label for="fileItems" class="form-label">Korekta pionowa tła napisu</label>
+                <input class="form-control" id="BgCorrectionY" value="-4">
+            </div>
+            <div class="mb-3 fileSelect">
+                <label for="fileItems" class="form-label">Korekta pozioma tła napisu</label>
+                <input class="form-control" id="BgCorrectionX" value="5">
             </div>
             <div class="input-group mb-3 fileSelect">
                 <span class="input-group-text" id="basic-addon1">Zacznij od odcinka numer</span>
