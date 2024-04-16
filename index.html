@@ -156,15 +156,18 @@
             const textStart = 930;
             
             const createTitle = (ctx, count) => {
+				const mainColor = document.querySelector('#MainColor').value;
+				const bgColor = document.querySelector('#BgColor').value;
+				const correction = document.querySelector('#BgCorrection').value;
+
                 ctx.font = "bold 60px calibri";
-                ctx.fillStyle = '#fff'
+                ctx.fillStyle = '#000'
                 ctx.fillText("KAMPANIA", textStart, 80);
                 ctx.fillText("CO-OP #" + count, textStart, 150);
                 ctx.fillText("IMPOSSIBLE", textStart, 220);
 
                 const move = 5
-                const correction = -2
-                ctx.fillStyle = '#000'
+                ctx.fillStyle = '#fff'
                 ctx.fillText("KAMPANIA", textStart + move, 80 + correction);
                 ctx.fillText("CO-OP #" + count, textStart + move, 150  + correction);
                 ctx.fillText("IMPOSSIBLE", textStart + move, 220  + correction);
@@ -197,6 +200,7 @@
 
             function generateThumbnails() {
 				audio.play();
+				document.querySelector("#main").innerHTML = "";
 
                 const cards = document.querySelector('#fileItems');
                 const background = document.querySelector('#fileBackground')
@@ -245,6 +249,18 @@
             <div class="mb-3 fileSelect">
                 <label for="fileItems" class="form-label">Pliki kart</label>
                 <input class="form-control" type="file" id="fileItems" multiple>
+            </div>
+            <div class="mb-3 fileSelect">
+                <label for="fileItems" class="form-label">Kolor napisu</label>
+                <input class="form-control" id="MainColor" value="#000000">
+            </div>
+            <div class="mb-3 fileSelect">
+                <label for="fileItems" class="form-label">Kolor Tła</label>
+                <input class="form-control" id="BgColor" value="#ffffff">
+            </div>
+            <div class="mb-3 fileSelect">
+                <label for="fileItems" class="form-label">Korekta tła napisu</label>
+                <input class="form-control" id="BgCorrection" value="-4">
             </div>
             <div class="input-group mb-3 fileSelect">
                 <span class="input-group-text" id="basic-addon1">Zacznij od odcinka numer</span>
