@@ -254,18 +254,22 @@
                 <label for="fileItems" class="form-label">Kolor napisu</label>
                 <input class="form-control" id="MainColor" value="#000000">
             </div>
-            <div class="mb-3 fileSelect">
-                <label for="fileItems" class="form-label">Kolor Tła</label>
-                <input class="form-control" id="BgColor" value="#ffffff">
-            </div>
-            <div class="mb-3 fileSelect">
-                <label for="fileItems" class="form-label">Korekta pionowa tła napisu</label>
-                <input class="form-control" id="BgCorrectionY" value="-4">
-            </div>
-            <div class="mb-3 fileSelect">
-                <label for="fileItems" class="form-label">Korekta pozioma tła napisu</label>
-                <input class="form-control" id="BgCorrectionX" value="5">
-            </div>
+			<div class="mb-3 fileSelect" >
+				<div class="row">
+					<div class="col">
+						<label for="fileItems" class="form-label">Kolor Tła</label>
+						<input class="form-control" id="BgColor" value="#ffffff">
+					</div>
+					<div class="col">
+						<label for="fileItems" class="form-label">Korekta pionowa</label>
+						<input class="form-control" id="BgCorrectionY" value="-4">
+					</div>
+					<div class="col">
+						<label for="fileItems" class="form-label">Korekta pozioma</label>
+						<input class="form-control" id="BgCorrectionX" value="5">
+					</div>
+				</div>
+			</div>
             <div class="input-group mb-3 fileSelect">
                 <span class="input-group-text" id="basic-addon1">Zacznij od odcinka numer</span>
                 <input type="text" class="form-control" id="thumbnailCount">
