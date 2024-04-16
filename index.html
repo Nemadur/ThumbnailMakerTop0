@@ -158,7 +158,7 @@
             const createTitle = (ctx, count) => {
 				const mainColor = document.querySelector('#MainColor').value;
 				const bgColor = document.querySelector('#BgColor').value;
-				const correction = document.querySelector('#BgCorrection').value;
+				const correction = parseInt(document.querySelector('#BgCorrection').value);
 
                 ctx.font = "bold 60px calibri";
                 ctx.fillStyle = '#000'
