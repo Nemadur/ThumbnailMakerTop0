@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function warcraft3() {
+export default function h4versus() {
     
 
     return (

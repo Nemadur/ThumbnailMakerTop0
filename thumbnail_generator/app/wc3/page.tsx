@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-export default function heroes4vs() {
+export default function wc3() {
     
 
     return (
         <>
-            heroes 4 vs page
+            warcraft 3 page
         </>
     )
 }
