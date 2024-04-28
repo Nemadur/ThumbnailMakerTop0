@@ -1,28 +1,36 @@
 'use client'
-import React from "react";
+import React, { useRef } from "react";
 import ReturnButton from "@/components/ReturnButton";
 
 export default function wc3() {
     const imageHeight = 650;
     const imageWidth = 460;
     const textStart = 930;
+
+    const mainColor = useRef();
+    const bgColor = useRef();
+    const correctionX = useRef();
+    const correctionY = useRef();
     
     const createTitle = (ctx: any, count: number) => {
-        const mainColor = document.querySelector('#MainColor').value;
-        const bgColor = document.querySelector('#BgColor').value;
-        const correctionY = parseInt(document.querySelector('#BgCorrectionY').value);
-        const correctionX = parseInt(document.querySelector('#BgCorrectionX').value);
+
+        const moveX = (correctionX.current) ? parseInt(correctionX.current.value) : 0 ;
+        const moveY = (correctionY.current) ? parseInt(correctionY.current.value) : 0 ;
+        const colorMain = (mainColor.current) ? mainColor.current.value : '#fff' ;
+        const colorBG = (bgColor.current) ? bgColor.current.value : '#000' ;
+
+        debugger;
 
         ctx.font = "bold 60px calibri";
-        ctx.fillStyle = bgColor
+        ctx.fillStyle = colorBG
         ctx.fillText("KAMPANIA", textStart, 80);
         ctx.fillText("CO-OP #" + count, textStart, 150);
         ctx.fillText("IMPOSSIBLE", textStart, 220);
 
-        ctx.fillStyle = mainColor
-        ctx.fillText("KAMPANIA", textStart + correctionX, 80 + correctionY);
-        ctx.fillText("CO-OP #" + count, textStart + correctionX, 150  + correctionY);
-        ctx.fillText("IMPOSSIBLE", textStart + correctionX, 220  + correctionY);
+        ctx.fillStyle = colorMain
+        ctx.fillText("KAMPANIA", textStart + moveX, 80 + moveY);
+        ctx.fillText("CO-OP #" + count, textStart + moveX, 150  + moveY);
+        ctx.fillText("IMPOSSIBLE", textStart + moveX, 220  + moveY);
     }
 
     const createThumbnail = (card: any, counter: any, background: any) => {
@@ -103,22 +111,22 @@ export default function wc3() {
                 </div>
                 <div className="mb-3 fileSelect">
                     <label htmlFor="fileItems" className="form-label">Kolor napisu</label>
-                    <input className="form-control" id="MainColor" defaultValue="#000000" />
+                    <input className="form-control" ref={mainColor} defaultValue="#000000" />
                 </div>
 
                 <div className="mb-3 fileSelect" >
                     <div className="row">
                         <div className="col">
                             <label htmlFor="fileItems" className="form-label">Kolor Tła</label>
-                            <input className="form-control" id="BgColor" defaultValue="#ffffff" />
+                            <input className="form-control" ref={bgColor} defaultValue="#ffffff" />
                         </div>
                         <div className="col">
                             <label htmlFor="fileItems" className="form-label">Korekta pionowa</label>
-                            <input className="form-control" id="BgCorrectionY" defaultValue="-4" />
+                            <input className="form-control" ref={correctionY} defaultValue="-4" />
                         </div>
                         <div className="col">
                             <label htmlFor="fileItems" className="form-label">Korekta pozioma</label>
-                            <input className="form-control" id="BgCorrectionX" defaultValue="5" />
+                            <input className="form-control" ref={correctionX} defaultValue="5" />
                         </div>
                     </div>
                 </div>
