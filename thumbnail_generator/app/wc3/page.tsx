@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import ReturnButton from "@/components/ReturnButton";
 
-export default function wc3() {
+export default function Wc3() {
     const imageHeight = 650;
     const imageWidth = 460;
     const textStart = 930;
@@ -18,8 +18,6 @@ export default function wc3() {
         const moveY = (correctionY.current) ? parseInt(correctionY.current.value) : 0 ;
         const colorMain = (mainColor.current) ? mainColor.current.value : '#fff' ;
         const colorBG = (bgColor.current) ? bgColor.current.value : '#000' ;
-
-        debugger;
 
         ctx.font = "bold 60px calibri";
         ctx.fillStyle = colorBG
