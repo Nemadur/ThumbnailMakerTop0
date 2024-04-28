@@ -1,14 +1,6 @@
 'use client'
-
 import React from "react";
-import { useRef } from "react";
-import styled from "styled-components";
-import Image from "next/image";
-
-const Wrapper = styled.div`
-    width: 50%;
-    margin: auto;
-`
+import ReturnButton from "@/components/ReturnButton";
 
 export default function wc3() {
     const imageHeight = 650;
@@ -97,7 +89,9 @@ export default function wc3() {
 
     return (
         <>
-            <Wrapper>
+            <ReturnButton/>
+
+            <div style={{width: '50%', margin: 'auto'}}>
                 
                 <div className="mb-3 fileSelect">
                     <label htmlFor="fileBackground" className="form-label">Plik tła</label>
@@ -139,7 +133,7 @@ export default function wc3() {
                     </audio>
                 </div>
 
-            </Wrapper>
+            </div>
 
             <table id="toSort" className="sortable table">
                 <thead>
