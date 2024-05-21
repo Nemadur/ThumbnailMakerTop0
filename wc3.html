@@ -23,24 +23,25 @@
 			
             const imageHeight = 650;
             const imageWidth = 460;
-            const textStart = 930;
             
             const createTitle = (ctx, count) => {
-				const mainColor = document.querySelector('#MainColor').value;
+                const textColor = document.querySelector('#TextColor').value;
+				const textPlacementY = parseInt(document.querySelector('#TextPlacementY').value);
+				const textPlacementX = parseInt(document.querySelector('#TextPlacementX').value);
 				const bgColor = document.querySelector('#BgColor').value;
 				const correctionY = parseInt(document.querySelector('#BgCorrectionY').value);
 				const correctionX = parseInt(document.querySelector('#BgCorrectionX').value);
 
                 ctx.font = "bold 60px calibri";
-                ctx.fillStyle = '#000'
-                ctx.fillText("KAMPANIA", textStart, 80);
-                ctx.fillText("CO-OP #" + count, textStart, 150);
-                ctx.fillText("IMPOSSIBLE", textStart, 220);
-
-                ctx.fillStyle = '#fff'
-                ctx.fillText("KAMPANIA", textStart + correctionX, 80 + correctionY);
-                ctx.fillText("CO-OP #" + count, textStart + correctionX, 150  + correctionY);
-                ctx.fillText("IMPOSSIBLE", textStart + correctionX, 220  + correctionY);
+                ctx.fillStyle = bgColor
+                ctx.fillText("KAMPANIA", textPlacementX + correctionX, textPlacementY + correctionY);
+                ctx.fillText("CO-OP #" + count, textPlacementX + correctionX, textPlacementY + 70 + correctionY);
+                ctx.fillText("IMPOSSIBLE", textPlacementX + correctionX, textPlacementY + 140 + correctionY);
+                
+                ctx.fillStyle = textColor
+                ctx.fillText("KAMPANIA", textPlacementX, textPlacementY);
+                ctx.fillText("CO-OP #" + count, textPlacementX, textPlacementY + 70);
+                ctx.fillText("IMPOSSIBLE", textPlacementX, textPlacementY + 140);
             }
 
             const createThumbnail = (card, counter, background) => {
@@ -66,7 +67,6 @@
 
                 document.getElementById('main').appendChild(tableRow)
             }
-
 
             function generateThumbnails() {
 				audio.play();
@@ -111,7 +111,6 @@
     </head>
     <body>
         <div>
-            
             <div class="mb-3 fileSelect">
                 <label for="fileBackground" class="form-label">Plik tła</label>
                 <input class="form-control" type="file" id="fileBackground">
@@ -120,15 +119,27 @@
                 <label for="fileItems" class="form-label">Pliki kart</label>
                 <input class="form-control" type="file" id="fileItems" multiple>
             </div>
-            <div class="mb-3 fileSelect">
-                <label for="fileItems" class="form-label">Kolor napisu</label>
-                <input class="form-control" id="MainColor" value="#000000">
+            <div class="mb-3 fileSelect" >
+                <div class="row">
+                    <div class="col">
+						<label for="fileItems" class="form-label">Kolor Napisu</label>
+						<input class="form-control" id="TextColor" value="#ffffff">
+					</div>
+                    <div class="col">
+                        <label for="fileItems" class="form-label">Położenie pionowe Napisu</label>
+                        <input class="form-control" id="TextPlacementY" value="80">
+                    </div>
+                    <div class="col">
+                        <label for="fileItems" class="form-label">Położenie poziome Napisu</label>
+                        <input class="form-control" id="TextPlacementX" value="930">
+                    </div>
+                </div>
             </div>
 			<div class="mb-3 fileSelect" >
 				<div class="row">
 					<div class="col">
 						<label for="fileItems" class="form-label">Kolor Tła</label>
-						<input class="form-control" id="BgColor" value="#ffffff">
+						<input class="form-control" id="BgColor" value="#000000">
 					</div>
 					<div class="col">
 						<label for="fileItems" class="form-label">Korekta pionowa</label>
