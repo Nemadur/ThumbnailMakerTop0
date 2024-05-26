@@ -23,53 +23,70 @@
 			
             const imageHeight = 650;
             const imageWidth = 460;
-            const textStart = 930;
-            const positions = [[450, 270], [695, 270]]
+            const positions = [[450, 260], [695, 260]]
             const iconSize = 140;
+
+            const createTitle = (ctx) => {
+                const textColor = document.querySelector('#TextColor').value;
+				const textPlacementY = parseInt(document.querySelector('#TextPlacementY').value);
+				const textPlacementX = parseInt(document.querySelector('#TextPlacementX').value);
+				const bgColor = document.querySelector('#BgColor').value;
+				const correctionY = parseInt(document.querySelector('#BgCorrectionY').value);
+				const correctionX = parseInt(document.querySelector('#BgCorrectionX').value);
+                const title = document.querySelector('#title').value
+
+                ctx.font = "bold 56px impact";
+                ctx.textAlign = 'center'
+                ctx.fillStyle = bgColor
+                ctx.fillText("HoMM 4", textPlacementX + correctionX, textPlacementY + correctionY);
+                ctx.fillText(title, textPlacementX + correctionX, textPlacementY + 70 + correctionY);
+                
+                ctx.fillStyle = textColor
+                ctx.fillText("HoMM 4", textPlacementX, textPlacementY);
+                ctx.fillText(title, textPlacementX, textPlacementY + 70);
+            }
+
 
             function generateThumbnails() {
 				audio.play();
 				document.querySelector("#main").innerHTML = "";
 
                 const icons = document.querySelector('#fileItems');
-                const background = document.createElement('img')
-                background.src = './resources/img/H4Background.png'
-
+                const background = new Image();
+            
                 const newThumbnail = document.createElement('canvas')
                 newThumbnail.width = 1280
                 newThumbnail.height = 720
-
                 const ctx = newThumbnail.getContext("2d");
-            
-                ctx.drawImage(background, 0, 0);
 
-                for (let index = 0; index < icons.files.length; index++) {
-                    var file = icons.files.item(index);
-                    
-                    var reader = new FileReader();
-                    reader.onload = function(event) {
-                        var iconImg = document.createElement('img');
-                        iconImg.src = event.target.result;
+                background.onload = function(){
 
-                        const [x, y] = positions[index]
+                    ctx.drawImage(background, 0, 0);
+    
+                    createTitle(ctx);
 
-                        iconImg.addEventListener("load", () => {
-                            ctx.drawImage(iconImg, x, y, iconSize, iconSize);
-                        });
-
-                    };
-                    reader.readAsDataURL(file);
+                    for (let index = 0; index < icons.files.length; index++) {
+                        var file = icons.files.item(index);
+                        
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            var iconImg = document.createElement('img');
+                            iconImg.src = event.target.result;
+    
+                            const [x, y] = positions[index]
+    
+                            iconImg.addEventListener("load", () => {
+                                ctx.drawImage(iconImg, x, y, iconSize, iconSize);
+                            });
+    
+                        };
+                        reader.readAsDataURL(file);
+                    }
+    
+                    document.getElementById('main').appendChild(newThumbnail)
                 }
 
-                const tableRow = document.createElement('tr');
-                const tableCell  = document.createElement('td');
-                const idCell  = document.createElement('td');
-
-                tableCell.appendChild(newThumbnail)
-                tableRow.appendChild(idCell)
-                tableRow.appendChild(tableCell)
-
-                document.getElementById('main').appendChild(tableRow)
+                background.src = './resources/img/H4Background_plain.png'
             }
 
         </script>
@@ -82,7 +99,46 @@
                 <label for="fileItems" class="form-label">Pliki avatarów</label>
                 <input class="form-control" type="file" id="fileItems" multiple>
             </div>
-			
+			<div class="mb-3 fileSelect" >
+                <div class="row">
+                    <div class="col">
+						<label for="fileItems" class="form-label">Kolor Napisu</label>
+						<input class="form-control" id="TextColor" value="#fff40a">
+					</div>
+                    <div class="col">
+                        <label for="fileItems" class="form-label">Położenie pionowe Napisu</label>
+                        <input class="form-control" id="TextPlacementY" value="515">
+                    </div>
+                    <div class="col">
+                        <label for="fileItems" class="form-label">Położenie poziome Napisu</label>
+                        <input class="form-control" id="TextPlacementX" value="640">
+                    </div>
+                </div>
+            </div>
+			<div class="mb-3 fileSelect" >
+				<div class="row">
+					<div class="col">
+						<label for="fileItems" class="form-label">Kolor Tła</label>
+						<input class="form-control" id="BgColor" value="#000000">
+					</div>
+					<div class="col">
+						<label for="fileItems" class="form-label">Korekta pionowa</label>
+						<input class="form-control" id="BgCorrectionY" value="-4">
+					</div>
+					<div class="col">
+						<label for="fileItems" class="form-label">Korekta pozioma</label>
+						<input class="form-control" id="BgCorrectionX" value="5">
+					</div>
+				</div>
+			</div>
+			<div class="mb-3 fileSelect" >
+				<div class="row">
+					<div class="col">
+						<label for="fileItems" class="form-label">Tytuł</label>
+						<input class="form-control" id="Title" value="Walki Jednostek">
+					</div>
+				</div>
+			</div>
             
             <div class="mb-3 fileSelect">
                 <button onclick="generateThumbnails()" type="button" class="btn btn-primary" style="width: 100%;">Generuj homm4 vs Thumbnail</button>
@@ -90,17 +146,8 @@
 
         </div>
 
-        <table id="toSort" class="sortable table">
-            <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Thumbnail</th>
-                </tr>
-              </thead>
-              <tbody id="main">
-
-              </tbody>
-        </table>
+        <div id="main" style="border: 2px solid white; width: 1284px; height: 724px; margin: auto; background-image: url('./resources/img/top0logo.jpg');">
+        </div>
 
     </body>
 </html>
